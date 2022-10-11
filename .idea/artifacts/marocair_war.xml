@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="marocair:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>marocair</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="marocair-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="marocair:war exploded" />
+    </root>
+  </artifact>
+</component>
