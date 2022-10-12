@@ -18,6 +18,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.5.0</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/io.github.cdimascio/java-dotenv -->
         <dependency>
             <groupId>io.github.cdimascio</groupId>
