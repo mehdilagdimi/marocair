@@ -1,4 +1,10 @@
 package com.marocair.marocair.dao;
 
-public class ClientDao {
+import com.marocair.marocair.base.DaoBuilder;
+
+public class ClientDao extends DaoBuilder {
+
+    public ClientDao(){
+
+    }
 }
