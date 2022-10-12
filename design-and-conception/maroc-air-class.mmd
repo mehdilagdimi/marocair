@@ -1,0 +1,56 @@
+classDiagram
+Person <|-- Admin
+Person <|-- Client
+Person <|-- Passanger
+Client *-- Passanger
+Admin "1.1" -- "0.*" Flight : Creates
+Client "1.1" -- "0.*" Reservation : Book
+Flight *-- Reservation
+Extra "0.*" -- "0.*" Reservation : Contains
+
+class Extra{
+    -Integer id
+    -String name
+    -Float price
+}
+
+class Reservation{
+    -Integer id
+    -DateTime reservationDate
+}
+
+class Person{
+    #Integer id
+    #String fullname
+    #String email
+    #String phone
+    +login() void
+    +register() void
+}
+
+class Flight{
+    -Integer id
+    -String from
+    -String to
+    -Integer totalSeats
+    -Integer availableSeats
+    -DateTime departTime
+    -DateTime arrivalTime
+
+}
+
+class Client{
+    -Integer code
+    -String password
+    -createBooking() void
+}
+
+class Passanger{
+    
+}
+
+class Admin{
+    -String password
+}
+
+
