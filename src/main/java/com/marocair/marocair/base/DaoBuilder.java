@@ -1,7 +1,7 @@
 package com.marocair.marocair.base;
 
 
-import com.marocair.marocair.util.DB.Handler;
+import com.marocair.marocair.util.DB.DBHandler;
 import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;
@@ -13,12 +13,11 @@ public class DaoBuilder {
 
     protected ArrayList<Object> values;
     protected StringBuilder query;
-    private Handler handler;
+    private DBHandler DBHandler;
     public DaoBuilder(){
         this.values = new ArrayList<>();
         this.query = new StringBuilder();
-        this.handler = new Handler();
-        this.handler.establishConnection();
+        this.DBHandler = new DBHandler();
     }
 
     private <V>void addValue(V value){
@@ -81,23 +80,23 @@ public class DaoBuilder {
 
     @NotNull
     private DaoBuilder prepare() {
-        this.handler.prepare(this.query.toString());
+        this.DBHandler.prepare(this.query.toString());
         int size = this.values.size();
         if (size == 0) return this;
         for (int i = 0; i < size; i++) {
-            this.handler.setParam(i+1,this.values.get(i));
+            this.DBHandler.setParam(i+1,this.values.get(i));
         }
         return this;
     }
 
     public int executeUpdate(){
-        int affectedRows = this.handler.executeUpdate();
+        int affectedRows = this.DBHandler.executeUpdate();
         this.reset();
         return affectedRows;
     }
 
     public ResultSet execute(){
-        ResultSet resultSet = this.handler.execute();
+        ResultSet resultSet = this.DBHandler.execute();
         this.reset();
         return resultSet;
     }

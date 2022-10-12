@@ -5,31 +5,15 @@ import java.sql.*;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Handler {
+public class DBHandler extends DBConnection {
 
-    private Connection conn = null;
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
 
-    public Handler() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        }
-        catch(ClassNotFoundException ex) {
-            System.out.println("Error: unable to load driver class!");
-            System.exit(1);
-        }
+    public DBHandler() {
+        establishConnection();
     }
 
-    public Connection establishConnection () {
-        try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ma-cnss", "root", "");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println(e.getMessage());
-        }
-        return conn;
-    }
 
     public <T>void setParam(int index, T data) {
         try{
