@@ -15,12 +15,14 @@ public class ClientController {
         if(!clientDao.isEmailExist(email)){
             return null;
         }
-        if(clientDao.isClientExist(email, passw) == -1){
+        int id = clientDao.isClientExist(email, passw);
+        if(id == -1){
             return null;
         }
         ClientModel clientModel = new ClientModel();
+        clientModel.setId(id);
         clientModel.setEmail(email);
-        clientModel.setEmail(passw);
+        clientModel.setPassw(passw);
         return clientModel;
     }
 

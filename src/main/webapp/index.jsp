@@ -20,6 +20,6 @@
     <h3> EMAIL : {client.getEmail()}</h3>
     <h3> PASSW : {client.getPassw()}</h3>
     <h3> PASSW : {client.getId()}</h3>
-<
+
 </body>
 </html>

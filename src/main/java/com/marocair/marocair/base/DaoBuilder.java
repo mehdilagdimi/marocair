@@ -3,7 +3,7 @@ package com.marocair.marocair.base;
 
 import com.marocair.marocair.util.DB.DBConnection;
 import com.marocair.marocair.util.DB.DBHandler;
-import org.jetbrains.annotations.NotNull;
+//import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -101,7 +101,7 @@ public class DaoBuilder{
         return prepare();
     }
 
-    @NotNull
+//    @NotNull
     private DaoBuilder prepare() {
         this.DBHandler.prepare(this.query.toString());
         int size = this.values.size();

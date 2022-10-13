@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class ClientDao extends DaoBuilder {
 
     public ClientDao(){
-        table = "patient";
+        table = "client";
     }
 
     public boolean isEmailExist(String email) {
