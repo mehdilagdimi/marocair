@@ -1,4 +1,12 @@
 package com.marocair.marocair.dao;
 
-public class PassengerDao {
+import com.marocair.marocair.base.DaoBuilder;
+
+public class PassengerDao extends DaoBuilder {
+
+        PassengerDao(){
+            table = "passenger";
+        }
+
+
 }

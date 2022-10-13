@@ -6,11 +6,11 @@ import java.sql.SQLException;
 
 public class DBConnection {
 
-    protected static Connection conn = null;
+    public static Connection conn = null;
 
     static {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("org.postgresql.Driver");
         }
         catch(ClassNotFoundException ex) {
             System.out.println("Error: unable to load driver class!");
@@ -18,8 +18,10 @@ public class DBConnection {
         }
     }
 
-    protected void establishConnection () {
+    public static void establishConnection () {
         try {
+//            System.out.println(Config.getUrl());
+//            System.out.println(Config.getUser());
             if(conn == null) conn = DriverManager.getConnection(Config.getUrl(), Config.getUser(), Config.getPassword());
         } catch (SQLException e) {
             e.printStackTrace();
