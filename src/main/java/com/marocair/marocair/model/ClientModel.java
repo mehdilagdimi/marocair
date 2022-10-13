@@ -1,32 +1,38 @@
 package com.marocair.marocair.model;
 
-public class ClientModel {
+public class ClientModel extends PersonModel{
+    private int code;
+    private String password;
 
-    private int id;
+    public ClientModel() {
 
-    private String email;
-    private String passw;
-
-    public int getId() {
-        return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassw() {
-        return passw;
+    public ClientModel(int id, String fullname, String email, String phone, int code, String password) {
+        super(id, fullname, email, phone);
+        this.code = code;
+        this.password = password;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public ClientModel(String fullname, String email, String phone, int code, String password) {
+        super(fullname, email, phone);
+        this.code = code;
+        this.password = password;
     }
 
-    public void setPassw(String passw) {
-        this.passw = passw;
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
