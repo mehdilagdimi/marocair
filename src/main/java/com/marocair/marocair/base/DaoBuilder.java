@@ -97,7 +97,7 @@ public class DaoBuilder{
     }
 
     public DaoBuilder buildReturn(){
-        this.query.append(" RETURNING * ");
+        this.query.append(" RETURNING *");
         return prepare();
     }
 
