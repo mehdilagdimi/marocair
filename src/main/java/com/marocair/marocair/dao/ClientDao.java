@@ -1,8 +1,7 @@
 package com.marocair.marocair.dao;
 
 import com.marocair.marocair.base.DaoBuilder;
-import com.marocair.marocair.model.AdminModel;
-import com.marocair.marocair.model.ClientModel;
+import com.marocair.marocair.model.Client;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,8 +12,8 @@ public class ClientDao extends DaoBuilder {
         table = "client";
     }
 
-    public ClientModel isClientExist(String email, String password) {
-        ClientModel client = new ClientModel();
+    public Client isClientExist(String email, String password) {
+        Client client = new Client();
         try{
             ResultSet res = this.select("*").where("email", "=", email).and("password", "=", password).build().execute();
             while (res.next()){

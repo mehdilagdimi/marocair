@@ -4,9 +4,8 @@ import java.io.*;
 
 import com.marocair.marocair.controller.Auth;
 import com.marocair.marocair.controller.ClientController;
-import com.marocair.marocair.model.AdminModel;
-import com.marocair.marocair.model.ClientModel;
-import com.marocair.marocair.model.PersonModel;
+import com.marocair.marocair.model.Admin;
+import com.marocair.marocair.model.Person;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -46,7 +45,7 @@ public class ClientServlet extends HttpServlet {
         out.println("<h1>" + email + "</h1>");
         out.println("<h1>" + passw + "</h1>");
 
-        PersonModel guest = new AdminModel();
+        Person guest = new Admin();
         guest.setEmail(email);
         guest.setPassword(passw);
         Auth.authenticate(guest,req.getSession());

@@ -1,16 +1,16 @@
 package com.marocair.marocair.model;
 
-public class ClientModel extends PersonModel{
+public class Client extends Person {
     private int code;
-    public ClientModel() {
+    public Client() {
 
     }
 
-    public ClientModel(int id, String fullname, String email, String phone, int code, String password) {
+    public Client(int id, String fullname, String email, String phone, int code, String password) {
         super(id, fullname, email, phone,password);
     }
 
-    public ClientModel(String fullname, String email, String phone, int code, String password) {
+    public Client(String fullname, String email, String phone, int code, String password) {
         super(fullname, email, phone,password);
         this.code = code;
     }

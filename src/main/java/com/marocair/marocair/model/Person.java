@@ -1,17 +1,17 @@
 package com.marocair.marocair.model;
 
-public class PersonModel {
+public class Person {
     private int id;
     private String fullname;
     private String email;
     private String phone;
     private String password;
 
-    public PersonModel() {
+    public Person() {
 
     }
 
-    public PersonModel(int id, String fullname, String email, String phone,String password) {
+    public Person(int id, String fullname, String email, String phone, String password) {
         this.id = id;
         this.fullname = fullname;
         this.email = email;
@@ -19,7 +19,7 @@ public class PersonModel {
         this.password = password;
     }
 
-    public PersonModel(String fullname, String email, String phone, String password) {
+    public Person(String fullname, String email, String phone, String password) {
         this.id = id;
         this.fullname = fullname;
         this.email = email;

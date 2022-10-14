@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %><
-<%@page  import="com.marocair.marocair.model.ClientModel" %>
+<%@page  import="com.marocair.marocair.model.Client" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +20,7 @@
     <h3> EMAIL : {client.getEmail()}</h3>
     <h3> PASSW : {client.getPassw()}</h3>
     <h3> PASSW : {client.getId()}</h3>
+    <a href="auth/login.jsp">Login</a>
 
 </body>
 </html>

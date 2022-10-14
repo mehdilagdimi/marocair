@@ -1,7 +1,7 @@
 package com.marocair.marocair.dao;
 
 import com.marocair.marocair.base.DaoBuilder;
-import com.marocair.marocair.model.AdminModel;
+import com.marocair.marocair.model.Admin;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,8 +16,8 @@ public class AdminDao extends DaoBuilder {
     boolean isEmailExist(String email, String passw) {
         return this.select("*").where("email", "=", email).build().isEmpty();
     }
-    public AdminModel isAdminExist(String email, String password) {
-        AdminModel admin = new AdminModel();
+    public Admin isAdminExist(String email, String password) {
+        Admin admin = new Admin();
         try{
             ResultSet res = this.select("*").where("email", "=", email).and("password", "=", password).build().execute();
             while (res.next()){
