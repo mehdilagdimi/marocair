@@ -93,11 +93,13 @@ public class DaoBuilder{
     }
 
     public DaoBuilder build(){
+        System.out.println(this.query);
         return prepare();
     }
 
     public DaoBuilder buildReturn(){
-        this.query.append(" RETURNING *");
+        this.query.append(" RETURNING * ");
+        System.out.println(this.query);
         return prepare();
     }
 
@@ -134,11 +136,12 @@ public class DaoBuilder{
         return query.toString();
     }
 
-    public DaoBuilder and(String col, String operator, String val) {
+    public <V> DaoBuilder and(String col, String operator, V value) {
         query.append(" AND ");
         query.append(col);
         query.append(operator);
-        query.append(val);
+        query.append("?");
+        this.addValue(value);
         return this;
     }
 

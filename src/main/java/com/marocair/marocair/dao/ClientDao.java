@@ -1,7 +1,7 @@
 package com.marocair.marocair.dao;
 
 import com.marocair.marocair.base.DaoBuilder;
-import com.marocair.marocair.model.ClientModel;
+import com.marocair.marocair.model.Client;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,23 +12,20 @@ public class ClientDao extends DaoBuilder {
         table = "patient";
     }
 
-    public boolean isEmailExist(String email) {
-        return this.select("*").where("email", "=", email).build().isEmpty();
-    }
-    public int isClientExist(String email, String passw) {
-        int id = -1;
+    public Client isClientExist(String email, String password) {
+        Client client = new Client();
         try{
-            ResultSet res = this.select("*").where("email", "=", email).and("password", "=", passw).buildReturn().execute();
-            if(res.next()) id = res.getInt("id");
+            ResultSet res = this.select("*").where("email", "=", email).and("password", "=", password).build().execute();
+            while (res.next()){
+                client.setId(res.getInt("id"));
+                client.setFullname(res.getString("fullname"));
+                client.setEmail(res.getString("email"));
+            }
+            return client;
         } catch (SQLException e){
             e.printStackTrace();
-        } finally {
-            System.out.println(id == -1 ? "Invalid Credentials" : "Client exist!");
-            return id;
         }
+        return null;
     }
 
-    public void addClient() {
-//        this.insert()
-    }
 }
