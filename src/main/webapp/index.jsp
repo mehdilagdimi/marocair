@@ -11,7 +11,7 @@
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
 <form action="add-client" method="post">
-    <input type="email" name="email" value="" placeholder="email">
+    <input type="text" name="email" value="" placeholder="email">
     <input type="password" name="password" value="" placeholder="password">
     <button type="submit">SUBMIT</button>
 

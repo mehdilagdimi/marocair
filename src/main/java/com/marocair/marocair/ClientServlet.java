@@ -2,8 +2,11 @@ package com.marocair.marocair;
 
 import java.io.*;
 
+import com.marocair.marocair.controller.Auth;
 import com.marocair.marocair.controller.ClientController;
+import com.marocair.marocair.model.AdminModel;
 import com.marocair.marocair.model.ClientModel;
+import com.marocair.marocair.model.PersonModel;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -42,14 +45,25 @@ public class ClientServlet extends HttpServlet {
         out.println("<html><body>");
         out.println("<h1>" + email + "</h1>");
         out.println("<h1>" + passw + "</h1>");
-        out.println("</body></html>");
-        ClientModel clientModel = clientController.getClient(email, passw);
 
+        PersonModel guest = new AdminModel();
+        guest.setEmail(email);
+        guest.setPassword(passw);
+        Auth.authenticate(guest,req.getSession());
+        out.println(Auth.auth(req.getSession()).getEmail());
+        out.println(req.getSession().getAttribute("person"));
+        out.println(req.getSession().getAttribute("role"));
+
+        out.println("</body></html>");
+
+        /*
         System.out.println("email" + clientModel.getEmail());
         System.out.println("id" + clientModel.getId());
-        System.out.println("passw" + clientModel.getPassw());
+        System.out.println("passw" + clientModel.getPassword());
         req.setAttribute("client", clientModel);
         req.getRequestDispatcher("index.jsp").forward(req, resp);
+
+         */
     }
 
     public void destroy() {

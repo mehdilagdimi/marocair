@@ -10,20 +10,5 @@ public class ClientController {
         clientDao = new ClientDao();
     }
 
-    public ClientModel getClient(String email, String passw){
-        //validation
-        if(!clientDao.isEmailExist(email)){
-            return null;
-        }
-        int id = clientDao.isClientExist(email, passw);
-        if(id == -1){
-            return null;
-        }
-        ClientModel clientModel = new ClientModel();
-        clientModel.setId(id);
-        clientModel.setEmail(email);
-        clientModel.setPassw(passw);
-        return clientModel;
-    }
 
 }

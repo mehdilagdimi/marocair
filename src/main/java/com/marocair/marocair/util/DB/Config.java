@@ -4,12 +4,12 @@ package com.marocair.marocair.util.DB;
 public class Config {
 //        public static Dotenv dotenv = Dotenv.load();
 //        private final static String URL = dotenv.get("URL") ;
-        private final static String URL = "jdbc:postgresql://localhost:5432/macnss" ;
+        private final static String URL = "jdbc:postgresql://localhost:5432/youflight" ;
 //        private final static String USER = dotenv.get("USER");
-        private final static String USER = "mehdilagdimi";
+        private final static String USER = "postgres";
         //setup env variable for later use
 //        private final static String PASSWORD = dotenv.get("PASSW");
-        private final static String PASSWORD = "1234";
+        private final static String PASSWORD = "nopass";
 
 
         public static String getUrl() {

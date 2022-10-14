@@ -5,23 +5,26 @@ public class PersonModel {
     private String fullname;
     private String email;
     private String phone;
+    private String password;
 
     public PersonModel() {
 
     }
 
-    public PersonModel(int id, String fullname, String email, String phone) {
+    public PersonModel(int id, String fullname, String email, String phone,String password) {
         this.id = id;
         this.fullname = fullname;
         this.email = email;
         this.phone = phone;
+        this.password = password;
     }
 
-    public PersonModel(String fullname, String email, String phone) {
+    public PersonModel(String fullname, String email, String phone, String password) {
         this.id = id;
         this.fullname = fullname;
         this.email = email;
         this.phone = phone;
+        this.password = password;
     }
 
     public int getId() {
@@ -54,5 +57,24 @@ public class PersonModel {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override // for debugging...
+    public String toString() {
+        return "PersonModel{" +
+                "id=" + id +
+                ", fullname='" + fullname + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

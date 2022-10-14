@@ -1,6 +1,7 @@
 package com.marocair.marocair.dao;
 
 import com.marocair.marocair.base.DaoBuilder;
+import com.marocair.marocair.model.AdminModel;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,17 +16,20 @@ public class AdminDao extends DaoBuilder {
     boolean isEmailExist(String email, String passw) {
         return this.select("*").where("email", "=", email).build().isEmpty();
     }
-    int isAdminExist(String email, String passw) {
-        int id = -1;
+    public AdminModel isAdminExist(String email, String password) {
+        AdminModel admin = new AdminModel();
         try{
-            ResultSet res = this.select("*").where("email", "=", email).and("password", "=", passw).buildReturn().execute();
-            if(res.next()) id = res.getInt("id");
+            ResultSet res = this.select("*").where("email", "=", email).and("password", "=", password).build().execute();
+            while (res.next()){
+                admin.setId(res.getInt("id"));
+                admin.setFullname(res.getString("fullname"));
+                admin.setEmail(res.getString("email"));
+            }
+            return admin;
         } catch (SQLException e){
             e.printStackTrace();
-        } finally {
-            System.out.println(id == -1 ? "Invalid Credentials" : "Admin exist!");
-            return id;
         }
+        return null;
     }
 
 
