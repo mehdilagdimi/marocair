@@ -27,7 +27,7 @@ public class Filter implements jakarta.servlet.Filter {
 
         if (Auth.auth(((HttpServletRequest) req).getSession()) == null) {
             HttpServletResponse httpResponse = (HttpServletResponse) resp;
-            httpResponse.sendRedirect("auth/login.jsp");
+            httpResponse.sendRedirect("http://localhost:8080/marocair_war_exploded/auth/login.jsp");
             System.out.println("Unauthorized....");
             return;
         }
