@@ -1,5 +1,6 @@
 package com.marocair.marocair.dao;
 
+import com.marocair.marocair.FlightServlet;
 import com.marocair.marocair.base.DaoBuilder;
 import com.marocair.marocair.model.Client;
 import com.marocair.marocair.model.Flight;
@@ -9,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public class FlightDao extends DaoBuilder {
     public FlightDao (){
@@ -24,6 +26,30 @@ public class FlightDao extends DaoBuilder {
                 flight.setId(res.getInt("id"));
                 return flight;
             }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ArrayList<Flight> getFlights(){
+        ArrayList<Flight> flights = new ArrayList<>();
+        try {
+            ResultSet res = this.select("*").build().execute();
+            while (res.next()){
+                Flight flight = new Flight(
+                        res.getInt("id"),
+                        res.getString("_from"),
+                        res.getString("_to"),
+                        res.getInt("nbr_of_seats"),
+                        res.getInt("available_seats"),
+                        res.getString("depart_time"),
+                        res.getString("arrival_time"),
+                        res.getFloat("price")
+                );
+                flights.add(flight);
+            }
+            return flights;
         }catch (SQLException e){
             e.printStackTrace();
         }

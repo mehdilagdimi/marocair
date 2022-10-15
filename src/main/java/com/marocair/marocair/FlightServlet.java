@@ -2,6 +2,7 @@ package com.marocair.marocair;
 
 import com.marocair.marocair.dao.FlightDao;
 import com.marocair.marocair.model.Flight;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -12,6 +13,14 @@ import java.io.IOException;
 
 @WebServlet("/flight")
 public class FlightServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // Get all flights
+        req.setAttribute("flights",new FlightDao().getFlights());
+        req.getRequestDispatcher("admin/flights.jsp").forward(req,resp);
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Flight flight = new Flight();
