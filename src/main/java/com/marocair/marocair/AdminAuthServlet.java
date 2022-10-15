@@ -22,7 +22,7 @@ public class AdminAuthServlet extends HttpServlet {
         admin.setPassword(password);
 
         if (Auth.authenticate(admin,req.getSession())) {
-            resp.sendRedirect(getServletContext().getInitParameter("url")+"index.jsp");
+            resp.sendRedirect(getServletContext().getInitParameter("url")+"admin/");
         }
 
     }

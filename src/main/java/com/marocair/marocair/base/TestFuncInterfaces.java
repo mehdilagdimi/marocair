@@ -15,7 +15,9 @@ public class TestFuncInterfaces {
 
         ModelSetFI<Client, Integer> setId = (model, data) -> model.setId(data);
         ModelSetFI<Client, String> setEmail = (model, data) -> model.setEmail(data);
-//        ModelSetFI<Client, String> setPassw = (model, data) -> model.setPassw(data);
+
+        ModelSetFI<Client, String> setPassw = (model, data) -> model.setPassword(data);
+
 
 //        FIHelper.setIntoModel(clientModel, new ModelSetFI[]{setId, setEmail, setPassw}, id, email, passw);
 
@@ -23,6 +25,11 @@ public class TestFuncInterfaces {
         ModelGetFI<Client, Integer> getId = (model) -> model.getId();
         ModelGetFI<Client, String> getEmail = (model) -> model.getEmail();
 //        ModelGetFI<Client, String> getPassw = (model) -> model.getPassw();
+
+
+        ModelGetFI<Client, Integer> getId = (model) -> model.getId();
+        ModelGetFI<Client, String> getEmail = (model) -> model.getEmail();
+        ModelGetFI<Client, String> getPassw = (model) -> model.getPassword();
 
 
 //        String[] data = FIHelper.getFromModel(clientModel, new ModelGetFI[]{getEmail, getPassw}, String.class);
