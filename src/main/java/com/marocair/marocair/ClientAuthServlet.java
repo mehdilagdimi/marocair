@@ -2,6 +2,7 @@ package com.marocair.marocair;
 
 import com.marocair.marocair.controller.Auth;
 import com.marocair.marocair.model.Admin;
+import com.marocair.marocair.model.Client;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -10,19 +11,19 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/auth/client-auth")
-public class AdminAuthServlet extends HttpServlet {
+@WebServlet("/auth/admin-auth")
+public class ClientAuthServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
 
-        Admin admin = new Admin();
-        admin.setEmail(email);
-        admin.setPassword(password);
+        Client client = new Client();
+        client.setEmail(email);
+        client.setPassword(password);
 
-        if (Auth.authenticate(admin,req.getSession())) {
-            resp.sendRedirect(getServletContext().getInitParameter("url")+"admin/");
+        if (Auth.authenticate(client,req.getSession())) {
+            resp.sendRedirect(getServletContext().getInitParameter("url")+"index.jsp");
         }
 
     }
