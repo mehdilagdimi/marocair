@@ -55,17 +55,22 @@ public class DaoBuilder{
         this.query.deleteCharAt(this.query.length()-1);
         return this;
     }
-    public <T>DaoBuilder insert(String[] cols, T ...values){
+    public <T>DaoBuilder insert(String cols, T ...values){
         query.append("INSERT INTO ");
         query.append(this.table);
-        query.append(" " + cols);
-        query.append(" VALUES ");
-        IntStream.range(0, values.length).forEachOrdered(i -> {
+        query.append("(");
+        query.append(cols);
+        query.append(") ");
+        query.append(" VALUES( ");
+
+        for (int i = 0; i < values.length; i++) {
             query.append("?,");
             this.addValue(values[i]);
-        });
-
+            System.out.println(values[i]);
+        }
+        System.out.println(this.values);
         this.query.deleteCharAt(this.query.length()-1);
+        this.query.append(")");
         return this;
     }
 
