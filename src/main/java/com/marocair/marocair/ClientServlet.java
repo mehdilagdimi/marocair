@@ -10,7 +10,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(name = "addClient", value = "/add-client")
+@WebServlet(name = "addClient", value = "/client")
 public class ClientServlet extends HttpServlet {
     private String message;
     ClientController clientController;

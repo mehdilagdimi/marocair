@@ -1,6 +1,5 @@
 package com.marocair.marocair.base;
 
-import com.marocair.marocair.model.ClientModel;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
