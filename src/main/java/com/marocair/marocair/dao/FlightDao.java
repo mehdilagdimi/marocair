@@ -44,8 +44,8 @@ public class FlightDao extends DaoBuilder {
                         res.getString("_to"),
                         res.getInt("nbr_of_seats"),
                         res.getInt("available_seats"),
-                        res.getString("depart_time"),
-                        res.getString("arrival_time"),
+                        res.getTimestamp("depart_time"),
+                        res.getTimestamp("arrival_time"),
                         res.getFloat("price")
                 );
                 flights.add(flight);
@@ -68,8 +68,8 @@ public class FlightDao extends DaoBuilder {
                         res.getString("_to"),
                         res.getInt("nbr_of_seats"),
                         res.getInt("available_seats"),
-                        res.getString("depart_time"),
-                        res.getString("arrival_time"),
+                        res.getTimestamp("depart_time"),
+                        res.getTimestamp("arrival_time"),
                         res.getFloat("price")
                 );
                 flights.add(flight);

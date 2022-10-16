@@ -1,19 +1,21 @@
 package com.marocair.marocair.model;
 
+import java.sql.Timestamp;
+
 public class Flight {
     private int id;
     private String from;
     private String to;
     private int nbrOfSeats;
     private int availableSeats;
-    private String departTime;
-    private String arrivalTime;
+    private Timestamp departTime;
+    private Timestamp arrivalTime;
     private float price;
 
     public Flight() {
     }
 
-    public Flight(int id, String from, String to, int nbrOfSeats, int availableSeats, String departTime, String arrivalTime,float price) {
+    public Flight(int id, String from, String to, int nbrOfSeats, int availableSeats, Timestamp departTime, Timestamp arrivalTime,float price) {
         this.id = id;
         this.from = from;
         this.to = to;
@@ -32,7 +34,7 @@ public class Flight {
         this.price = price;
     }
 
-    public Flight(String from, String to, int nbrOfSeats, int availableSeats, String departTime, String arrivalTime, float price) {
+    public Flight(String from, String to, int nbrOfSeats, int availableSeats, Timestamp departTime, Timestamp arrivalTime, float price) {
         this.from = from;
         this.to = to;
         this.nbrOfSeats = nbrOfSeats;
@@ -82,19 +84,19 @@ public class Flight {
         this.availableSeats = availableSeats;
     }
 
-    public String getDepartTime() {
+    public Timestamp getDepartTime() {
         return departTime;
     }
 
-    public void setDepartTime(String departTime) {
+    public void setDepartTime(Timestamp departTime) {
         this.departTime = departTime;
     }
 
-    public String getArrivalTime() {
+    public Timestamp getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(String arrivalTime) {
+    public void setArrivalTime(Timestamp arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 }

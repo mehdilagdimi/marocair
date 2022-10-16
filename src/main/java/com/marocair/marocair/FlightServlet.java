@@ -3,6 +3,7 @@ package com.marocair.marocair;
 import com.marocair.marocair.controller.FlightsController;
 import com.marocair.marocair.dao.FlightDao;
 import com.marocair.marocair.model.Flight;
+import com.marocair.marocair.util.TimeHelper.TimeUtil;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -29,17 +30,11 @@ public class FlightServlet extends HttpServlet {
             String from = req.getParameter("from");
             String to = req.getParameter("to");
             String date = req.getParameter("date");
-            System.out.println("from " + from);
-            System.out.println("to " + to);
-            System.out.println("date " + date);
-//           String search = req.getParameter("q");
+
             List<Flight> list = flightsController.getSearchedFlights(from, to, date);
-            System.out.println("list of lights");
-            list.forEach(System.out::print);
 
             req.setAttribute("searchedFlights", flightsController.getSearchedFlights(from, to, date));
             req.getRequestDispatcher("pages/flights.jsp").forward(req,resp);
-            System.out.println("inside search request");
             return;
         }
 
@@ -53,8 +48,8 @@ public class FlightServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Flight flight = new Flight();
-        flight.setArrivalTime(req.getParameter("arrival-time"));
-        flight.setDepartTime(req.getParameter("depart-time"));
+        flight.setArrivalTime(TimeUtil.stringToTimestamp(req.getParameter("arrival-time")));
+        flight.setDepartTime(TimeUtil.stringToTimestamp(req.getParameter("depart-time")));
         flight.setNbrOfSeats(Integer.valueOf(req.getParameter("nbr-of-seats")));
         flight.setFrom(req.getParameter("from"));
         flight.setTo(req.getParameter("to"));
