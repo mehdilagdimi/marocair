@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FlightDao extends DaoBuilder {
     public FlightDao (){
@@ -55,4 +56,31 @@ public class FlightDao extends DaoBuilder {
         }
         return null;
     }
+
+    public List<Flight> getFlightsByContraints(String from, String to, Timestamp date){
+        List<Flight> flights = new ArrayList<>();
+        try{
+            ResultSet res = this.select("*").where("_from", "=", from).and("_to", "=", to).and("depart_time", ">", date).build().execute();
+            while (res.next()){
+                Flight flight = new Flight(
+                        res.getInt("id"),
+                        res.getString("_from"),
+                        res.getString("_to"),
+                        res.getInt("nbr_of_seats"),
+                        res.getInt("available_seats"),
+                        res.getString("depart_time"),
+                        res.getString("arrival_time"),
+                        res.getFloat("price")
+                );
+                flights.add(flight);
+            }
+            System.out.println(" flights inside DAO ");
+            flights.forEach(System.out::print);
+            return flights;
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

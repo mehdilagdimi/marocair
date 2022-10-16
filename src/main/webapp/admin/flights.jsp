@@ -34,7 +34,7 @@
         <td class="p-3">${flight.getPrice()}</td>
         <td>
           <form>
-            <input name="flight-id" hidden>
+            <input name="flight-id"  hidden>
             <button>Submit</button>
           </form>
         </td>

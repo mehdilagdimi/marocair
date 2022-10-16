@@ -35,7 +35,6 @@ public class AuthServlet extends HttpServlet {
         client.setPassword(password);
 
         if(Auth.authenticate(client,req.getSession())){
-            System.out.println("inside client ");
             resp.sendRedirect(getServletContext().getInitParameter("url")+"pages/search-flight.jsp");
             return;
         }

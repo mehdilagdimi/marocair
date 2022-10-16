@@ -1,5 +1,6 @@
 package com.marocair.marocair;
 
+import com.marocair.marocair.controller.FlightsController;
 import com.marocair.marocair.dao.FlightDao;
 import com.marocair.marocair.model.Flight;
 import jakarta.servlet.RequestDispatcher;
@@ -10,15 +11,43 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/flight")
 public class FlightServlet extends HttpServlet {
+    FlightsController flightsController;
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        flightsController = new FlightsController();
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //Executed when search is requested
+        if(req.getParameter("searchflight") != null){
+            String from = req.getParameter("from");
+            String to = req.getParameter("to");
+            String date = req.getParameter("date");
+            System.out.println("from " + from);
+            System.out.println("to " + to);
+            System.out.println("date " + date);
+//           String search = req.getParameter("q");
+            List<Flight> list = flightsController.getSearchedFlights(from, to, date);
+            System.out.println("list of lights");
+            list.forEach(System.out::print);
+
+            req.setAttribute("searchedFlights", flightsController.getSearchedFlights(from, to, date));
+            req.getRequestDispatcher("pages/flights.jsp").forward(req,resp);
+            System.out.println("inside search request");
+            return;
+        }
+
         // Get all flights
         req.setAttribute("flights",new FlightDao().getFlights());
         req.getRequestDispatcher("admin/flights.jsp").forward(req,resp);
+
+
     }
 
     @Override
