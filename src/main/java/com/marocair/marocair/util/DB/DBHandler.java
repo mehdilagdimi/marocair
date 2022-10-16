@@ -1,9 +1,15 @@
 package com.marocair.marocair.util.DB;
 
+import com.marocair.marocair.base.ModelTypesToMapInterface;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.*;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBHandler extends DBConnection {
 
@@ -38,6 +44,9 @@ public class DBHandler extends DBConnection {
                     break;
                 case "LocalDate" :
                     this.preparedStatement.setObject(index, data);
+                    break;
+                case "Timestamp" :
+                    this.preparedStatement.setTimestamp(index, (Timestamp) data);
                     break;
             }
 
@@ -104,6 +113,22 @@ public class DBHandler extends DBConnection {
         }
         return isEmpty;
     }
+    //check if provided result set is empty
+    public boolean isEmpty(ResultSet result) {
+        boolean isEmpty = true;
+        if (result != null) {
+            try {
+                if (result.isBeforeFirst()) {
+                    isEmpty = false;
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return isEmpty;
+    }
+
+
 
     public void closeConnection () {
         if (this.conn != null) try {
@@ -120,5 +145,41 @@ public class DBHandler extends DBConnection {
         if (this.preparedStatement != null) try { preparedStatement.close(); } catch (SQLException ignore) {}
     }
 
+    public static<T> T getParams(ResultSet result, ModelTypesToMapInterface objectTypesMap, Class<T> impl) throws SQLException, NoSuchMethodException, InstantiationException, InvocationTargetException, IllegalAccessException {
+        Constructor<? extends T> classConstructor = impl.getConstructor();
 
+        List<Object> list = new ArrayList<>();
+        for (String key : objectTypesMap.run().keySet()) {
+            switch (key) {
+                case "Boolean":
+                    list.add(result.getBoolean(key));
+                    break;
+                case "Integer":
+                    list.add(result.getInt(key));
+                    break;
+                case "Long":
+                    list.add(result.getLong(key));
+                    break;
+                case "String":
+                    list.add(result.getString(key));
+                    break;
+                case "Float":
+                    list.add(result.getFloat(key));
+                    break;
+                case "Double":
+                    list.add(result.getDouble(key));
+                    break;
+                case "LocalDate":
+                    list.add(result.getObject(key));
+                    break;
+                case "Timestamp":
+                    list.add(result.getTimestamp(key));
+                    break;
+            }
+        }
+
+        T model = classConstructor.newInstance(list);
+        return model;
+    }
 }
+

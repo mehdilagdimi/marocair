@@ -27,11 +27,6 @@ public class TestFuncInterfaces {
 //        ModelGetFI<Client, String> getPassw = (model) -> model.getPassw();
 
 
-        ModelGetFI<Client, Integer> getId = (model) -> model.getId();
-        ModelGetFI<Client, String> getEmail = (model) -> model.getEmail();
-        ModelGetFI<Client, String> getPassw = (model) -> model.getPassword();
-
-
 //        String[] data = FIHelper.getFromModel(clientModel, new ModelGetFI[]{getEmail, getPassw}, String.class);
         Integer[] returnedId = FIHelper.getFromModel(clientModel, new ModelGetFI[]{getId}, Integer.class);
 

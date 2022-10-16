@@ -1,4 +1,7 @@
 <%@include file="../layout/header.jsp" %>
+
+<% String url = application.getInitParameter("url"); %>
+
 <!-- component -->
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
 

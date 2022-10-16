@@ -20,12 +20,14 @@ public class AdminDao extends DaoBuilder {
         Admin admin = new Admin();
         try{
             ResultSet res = this.select("*").where("email", "=", email).and("password", "=", password).build().execute();
-            while (res.next()){
-                admin.setId(res.getInt("id"));
-                admin.setFullname(res.getString("fullname"));
-                admin.setEmail(res.getString("email"));
+            if(!isEmpty(res)){
+                while (res.next()){
+                    admin.setId(res.getInt("id"));
+                    admin.setFullname(res.getString("fullname"));
+                    admin.setEmail(res.getString("email"));
+                }
+                return admin;
             }
-            return admin;
         } catch (SQLException e){
             e.printStackTrace();
         }

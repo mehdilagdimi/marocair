@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/auth/admin-auth")
+@WebServlet("/auth/client-auth")
 public class ClientAuthServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,6 +25,8 @@ public class ClientAuthServlet extends HttpServlet {
         if (Auth.authenticate(client,req.getSession())) {
             resp.sendRedirect(getServletContext().getInitParameter("url")+"index.jsp");
         }
+
+
 
     }
 }

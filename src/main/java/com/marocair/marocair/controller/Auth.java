@@ -6,8 +6,9 @@ import com.marocair.marocair.model.Person;
 import jakarta.servlet.http.HttpSession;
 
 public class Auth {
-    public static boolean authenticate(Person guest, HttpSession session){
+    public static<T extends Person> boolean authenticate(T guest, HttpSession session){
         String instanceOf = guest.getClass().getSimpleName();
+        System.out.println(" instance " + instanceOf);
 
         String role = null;
         Person person = null;

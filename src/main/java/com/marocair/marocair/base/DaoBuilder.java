@@ -15,14 +15,14 @@ public class DaoBuilder{
 
     protected ArrayList<Object> values;
     protected StringBuilder query;
-    private DBHandler DBHandler;
+    protected DBHandler dBHandler;
 
 
     public DaoBuilder(){
         DBConnection.establishConnection();
         this.values = new ArrayList<>();
         this.query = new StringBuilder();
-        this.DBHandler = new DBHandler();
+        this.dBHandler = new DBHandler();
     }
 
     private <V>void addValue(V value){
@@ -110,30 +110,35 @@ public class DaoBuilder{
 
 //    @NotNull
     private DaoBuilder prepare() {
-        this.DBHandler.prepare(this.query.toString());
+        this.dBHandler.prepare(this.query.toString());
         int size = this.values.size();
         if (size == 0) return this;
         for (int i = 0; i < size; i++) {
-            this.DBHandler.setParam(i+1,this.values.get(i));
+            this.dBHandler.setParam(i+1,this.values.get(i));
         }
         return this;
     }
 
     public int executeUpdate(){
-        int affectedRows = this.DBHandler.executeUpdate();
+        int affectedRows = this.dBHandler.executeUpdate();
         this.reset();
         return affectedRows;
     }
 
     public ResultSet execute(){
-        ResultSet resultSet = this.DBHandler.execute();
+        ResultSet resultSet = this.dBHandler.execute();
         this.reset();
         return resultSet;
     }
     public boolean isEmpty(){
-        ResultSet resultSet = this.DBHandler.execute();
+        ResultSet resultSet = this.dBHandler.execute();
         this.reset();
-        return this.DBHandler.isEmpty();
+        return this.dBHandler.isEmpty();
+    }
+
+    //overloaded method for checking for specific resultset provided as param
+    public boolean isEmpty(ResultSet result){
+        return this.dBHandler.isEmpty(result);
     }
 
     @Override
