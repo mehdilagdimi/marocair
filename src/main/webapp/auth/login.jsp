@@ -18,7 +18,7 @@
                             Login or create an account.
                         </div>
 
-                        <form action="admin-auth" method="post" class="mt-8">
+                        <form action="user-auth" method="post" class="mt-8">
                             <div class="mx-auto max-w-lg">
                                 <div class="py-2">
                                     <span class="px-1 text-sm text-gray-600">Username</span>
