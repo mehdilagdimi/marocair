@@ -59,8 +59,9 @@ public class FlightDao extends DaoBuilder {
 
     public List<Flight> getFlightsByContraints(String from, String to, Timestamp date){
         List<Flight> flights = new ArrayList<>();
+
         try{
-            ResultSet res = this.select("*").where("_from", "=", from).and("_to", "=", to).and("depart_time", ">", date).build().execute();
+            ResultSet res = this.select("*").where("_from", "LIKE", "%"+from+"%").and("_to", "LIKE", "%"+to+"%").and("depart_time", ">", date).build().execute();
             while (res.next()){
                 Flight flight = new Flight(
                         res.getInt("id"),
@@ -74,8 +75,6 @@ public class FlightDao extends DaoBuilder {
                 );
                 flights.add(flight);
             }
-            System.out.println(" flights inside DAO ");
-            flights.forEach(System.out::print);
             return flights;
         } catch (SQLException e){
             e.printStackTrace();

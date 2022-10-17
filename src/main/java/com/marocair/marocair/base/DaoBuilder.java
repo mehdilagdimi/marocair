@@ -77,7 +77,9 @@ public class DaoBuilder{
     public  <T>DaoBuilder where(String col, String operator, T value) {
         query.append(" WHERE ");
         query.append(col);
+        query.append(" ");
         query.append(operator);
+        query.append(" ");
         query.append("?");
         this.addValue(value);
         return this;
@@ -149,7 +151,9 @@ public class DaoBuilder{
     public <V> DaoBuilder and(String col, String operator, V value) {
         query.append(" AND ");
         query.append(col);
+        query.append(" ");
         query.append(operator);
+        query.append(" ");
         query.append("?");
         this.addValue(value);
         return this;
@@ -158,7 +162,9 @@ public class DaoBuilder{
     protected DaoBuilder or(String col, String operator, String val) {
         query.append(" OR ");
         query.append(col);
+        query.append(" ");
         query.append(operator);
+        query.append(" ");
         query.append(val);
         return this;
     }

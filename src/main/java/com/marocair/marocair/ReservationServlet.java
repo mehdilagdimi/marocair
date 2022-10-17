@@ -21,12 +21,10 @@ public class ReservationServlet extends HttpServlet {
     private String message;
     public ReservationController reservationController;
 
-    public ReservationServlet() {
-        reservationController = new ReservationController();
-    }
+
 
     public void init() {
-        message = "Hello World!";
+        reservationController = new ReservationController();
     }
 
 
@@ -40,6 +38,9 @@ public class ReservationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        super.doPost(req, resp);
+        if (req.getParameter("flight-id") != null) {
+
+        }
     }
 
     public void destroy() {

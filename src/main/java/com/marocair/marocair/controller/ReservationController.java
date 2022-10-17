@@ -12,4 +12,8 @@ public class ReservationController {
     public List<Reservation> getClientReservation(int id) {
         return new ReservationDao().getReservationsById(id);
     }
+
+//    public Reservation storeReservation(int flight_id, int client_id, int passanger_id, float amount){
+//
+//    }
 }

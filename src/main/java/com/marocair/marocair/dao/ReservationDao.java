@@ -18,7 +18,7 @@ public class ReservationDao extends DaoBuilder {
     public List<Reservation> getReservationsById(int id){
         List<Reservation> reservations = new ArrayList<>();
         try {
-            ResultSet res = this.select("*").build().execute();
+            ResultSet res = this.select("*").where("id", "=", id).build().execute();
 //
 
             while (res.next()){

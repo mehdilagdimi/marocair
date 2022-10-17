@@ -26,6 +26,7 @@
             <th>Nbr of seats</th>
             <th>Available seats</th>
             <th>Price</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -40,9 +41,9 @@
                 <td class="p-3">${flight.getAvailableSeats()}</td>
                 <td class="p-3">${flight.getPrice()}</td>
                 <td>
-                    <form>
+                    <form action="reservation/add-reservation/" method="post">
                         <input name="flight-id" value="${flight.getId()}" hidden>
-                        <button>Submit</button>
+                        <button type="submit">RESERVE</button>
                     </form>
                 </td>
             </tr>
