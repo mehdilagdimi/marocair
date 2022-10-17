@@ -1,12 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.marocair.marocair.model.Flight" %>
-<%@ include file="../layout/header.jsp" %>
-
-<%
-  String url = application.getInitParameter("url");
-%>
-<div class="p-6">
-  <h1 class="text-3xl">Display Flights...</h1>
+<%@ include file="./layout/header.jsp" %>
 
   <table class="table-auto mt-6">
     <thead>
@@ -42,6 +36,6 @@
     </c:forEach>
     </tbody>
   </table>
-</div>
 
-<%@include file="../layout/footer.jsp" %>
+
+<%@include file="/admin/layout/footer.jsp" %>

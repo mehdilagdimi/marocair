@@ -1,12 +1,41 @@
-<%@include file="../layout/header.jsp" %>
-    <%
-        String url = application.getInitParameter("url");
-    %>
-    <div class="border border-2 border-green-300 p-6">
-        <h1 class="text-4xl">[ADMIN] Main page...</h1>
-        <p class="text-gray-500 text-3xl mt-3">Links:</p>
-        <a class="mt-3 block text-blue-600 underline" href="<%= url+"admin/add-flight.jsp" %>">Add flight</a>
-        <a class="mt-3 block text-blue-600 underline" href="<%= url+"flight" %>">Display flights</a>
-    </div>
-<%@include file="../layout/footer.jsp" %>
-        
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.marocair.marocair.model.Flight" %>
+<%@ include file="./layout/header.jsp" %>
+
+<table class="table-auto mt-6">
+    <thead>
+    <tr class="bg-gray-200">
+        <th>#</th>
+        <th>From</th>
+        <th>Destination</th>
+        <th>Depart time</th>
+        <th>Arrival time</th>
+        <th>Nbr of seats</th>
+        <th>Available seats</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach var="flight" items="${flights}">
+        <tr class="border border-3 border-blue-6 h-15 odd:bg-blue-100">
+            <td class="p-3">${flight.getId()}</td>
+            <td class="p-3">${flight.getFrom()}</td>
+            <td class="p-3">${flight.getTo()}</td>
+            <td class="p-3">${flight.getDepartTime()}</td>
+            <td class="p-3">${flight.getArrivalTime()}</td>
+            <td class="p-3">${flight.getNbrOfSeats()}</td>
+            <td class="p-3">${flight.getAvailableSeats()}</td>
+            <td class="p-3">${flight.getPrice()}</td>
+            <td>
+                <form>
+                    <input name="flight-id" hidden>
+                    <button>Submit</button>
+                </form>
+            </td>
+        </tr>
+    </c:forEach>
+    </tbody>
+</table>
+
+
+<%@include file="/admin/layout/footer.jsp" %>
