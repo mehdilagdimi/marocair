@@ -15,15 +15,15 @@ public class ReservationDao extends DaoBuilder {
         table = "reservation";
     }
 
-    public List<Reservation> getReservationsById(int id){
+    public List<Reservation> getReservationsByClientId(int client_id){
         List<Reservation> reservations = new ArrayList<>();
         try {
-            ResultSet res = this.select("*").build().execute();
+            ResultSet res = this.select("*").where("client_id", "=", client_id).build().execute();
 //
 
             while (res.next()){
-                Reservation reservationG = new Reservation();
-                reservationG = DBHandler.<Reservation>getParams(res, Reservation::typesToMap, Reservation.class);
+//                Reservation reservationG = new Reservation();
+//                reservationG = DBHandler.<Reservation>getParams(res, Reservation::typesToMap, Reservation.class);
 
                 Reservation reservation = new Reservation(
                         res.getInt("id"),
@@ -37,7 +37,32 @@ public class ReservationDao extends DaoBuilder {
                 reservations.add(reservation);
             }
             return reservations;
-        }catch (SQLException | NoSuchMethodException | InstantiationException | InvocationTargetException | IllegalAccessException e){
+        }catch (SQLException e){
+//        }catch (SQLException | NoSuchMethodException | InstantiationException | InvocationTargetException | IllegalAccessException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Reservation storeReservation(int flight_id, int client_id, int passanger_id, float amount){
+        try {
+            ResultSet res = this.insert("client_id, flight_id, passanger_id, amount", client_id, flight_id, passanger_id, amount).buildReturn().execute();
+//
+//                Reservation reservationG = new Reservation();
+//                reservationG = DBHandler.<Reservation>getParams(res, Reservation::typesToMap, Reservation.class);
+
+                Reservation reservation = new Reservation(
+                        res.getInt("id"),
+                        res.getInt("client_id"),
+                        res.getInt("passanger_id"),
+                        res.getInt("flight_id"),
+                        res.getTimestamp("created_at"),
+                        res.getFloat("amount")
+                );
+
+            return reservation;
+        }catch (SQLException e){
+//        }catch (SQLException | NoSuchMethodException | InstantiationException | InvocationTargetException | IllegalAccessException e){
             e.printStackTrace();
         }
         return null;
