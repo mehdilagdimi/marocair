@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.sql.Timestamp" %><%--
   Created by IntelliJ IDEA.
   User: Youcode
   Date: 16-Oct-22
@@ -8,7 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../layout/header.jsp" %>
 
-<% String url = application.getInitParameter("url"); %>
+<%
+    String url = application.getInitParameter("url");
+    Timestamp ts = new Timestamp(System.currentTimeMillis());
+    String inst = String.valueOf(ts.toInstant());
+    String timeStampNow = inst.substring(0, inst.lastIndexOf(":"));
+    System.out.println(" time stam" + timeStampNow);
+
+%>
 
 <form action="<%=url%>flight" method="get">
 <div class="h-screen w-screen bg-gray-300">
@@ -68,7 +75,7 @@
 <%--                            <path class="heroicon-ui"--%>
 <%--                                  d="M13.04 14.69l1.07-2.14a1 1 0 0 1 1.2-.5l6 2A1 1 0 0 1 22 15v5a2 2 0 0 1-2 2h-2A16 16 0 0 1 2 6V4c0-1.1.9-2 2-2h5a1 1 0 0 1 .95.68l2 6a1 1 0 0 1-.5 1.21L9.3 10.96a10.05 10.05 0 0 0 3.73 3.73zM8.28 4H4v2a14 14 0 0 0 14 14h2v-4.28l-4.5-1.5-1.12 2.26a1 1 0 0 1-1.3.46 12.04 12.04 0 0 1-6.02-6.01 1 1 0 0 1 .46-1.3l2.26-1.14L8.28 4zm7.43 5.7a1 1 0 1 1-1.42-1.4L18.6 4H16a1 1 0 0 1 0-2h5a1 1 0 0 1 1 1v5a1 1 0 0 1-2 0V5.41l-4.3 4.3z"/>--%>
 <%--                        </svg>--%>
-                        <input type="datetime-local" name="date" placeholder="Date..."
+                        <input type="datetime-local" name="date" value="<%= timeStampNow %>" placeholder="Date..."
                                class="bg-gray-300 max-w-full focus:outline-none text-gray-700"/>
                     </div>
                 </div>
