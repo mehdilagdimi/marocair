@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="flex min-h-screen">
-    <aside class="w-64 flex-2 min-h-screen" aria-label="Sidebar">
+    <aside class="w-64 flex-2 min-h-screen bg-gray-50" aria-label="Sidebar">
         <div class="overflow-y-auto py-4 px-3 bg-gray-50 rounded dark:bg-gray-800">
             <a href="#" class="flex items-center pl-2.5 mb-5">
                 <div class="bg-cyan-600 rounded-full w-6 h-6">
