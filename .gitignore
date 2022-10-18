@@ -42,3 +42,4 @@ build/
 
 ## config
 .env
+./src/main/java/com.marocair.marocair/util/DB/Config.java
