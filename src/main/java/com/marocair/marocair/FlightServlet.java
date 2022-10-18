@@ -44,6 +44,7 @@ public class FlightServlet extends HttpServlet {
         }
 
         // Get all flights
+        req.setAttribute("sectionTitle","Flights");
         req.setAttribute("flights",new FlightDao().getFlights());
         req.getRequestDispatcher("admin/flights.jsp").forward(req,resp);
 
