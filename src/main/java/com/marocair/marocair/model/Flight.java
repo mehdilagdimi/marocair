@@ -99,4 +99,19 @@ public class Flight {
     public void setArrivalTime(Timestamp arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
+
+
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "id=" + id +
+                ", from='" + from + '\'' +
+                ", to='" + to + '\'' +
+                ", nbrOfSeats=" + nbrOfSeats +
+                ", availableSeats=" + availableSeats +
+                ", departTime=" + departTime +
+                ", arrivalTime=" + arrivalTime +
+                ", price=" + price +
+                '}';
+    }
 }

@@ -16,7 +16,11 @@ import java.util.List;
 
 @WebServlet("/flight")
 public class FlightServlet extends HttpServlet {
-    FlightsController flightsController;
+
+    public static Flight flight;
+    public static List<Flight> flights;
+    public static List<Flight> searchedFlights;
+    private FlightsController flightsController;
     @Override
     public void init() throws ServletException {
         super.init();
@@ -31,7 +35,8 @@ public class FlightServlet extends HttpServlet {
             String to = req.getParameter("to");
             String date = req.getParameter("date");
 
-            List<Flight> list = flightsController.getSearchedFlights(from, to, date);
+//            List<Flight> list = flightsController.getSearchedFlights(from, to, date);
+            searchedFlights = flightsController.getSearchedFlights(from, to, date);
 
             req.setAttribute("searchedFlights", flightsController.getSearchedFlights(from, to, date));
             req.getRequestDispatcher("pages/flights.jsp").forward(req,resp);
@@ -47,7 +52,8 @@ public class FlightServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Flight flight = new Flight();
+        flight = new Flight();
+//        Flight flight = new Flight();
         flight.setArrivalTime(TimeUtil.stringToTimestamp(req.getParameter("arrival-time")));
         flight.setDepartTime(TimeUtil.stringToTimestamp(req.getParameter("depart-time")));
         flight.setNbrOfSeats(Integer.valueOf(req.getParameter("nbr-of-seats")));
