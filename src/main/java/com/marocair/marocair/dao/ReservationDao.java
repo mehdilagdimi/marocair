@@ -27,7 +27,6 @@ public class ReservationDao extends DaoBuilder {
                 Reservation reservation = new Reservation(
                         res.getInt("id"),
                         res.getInt("client_id"),
-                        res.getInt("passanger_id"),
                         res.getInt("flight_id"),
                         res.getTimestamp("created_at"),
                         res.getFloat("amount")
@@ -43,23 +42,22 @@ public class ReservationDao extends DaoBuilder {
         return null;
     }
 
-    public Reservation storeReservation(int flight_id, int client_id, int passanger_id, float amount){
+    public Reservation storeReservation(int flight_id, int client_id, float amount){
         try {
-            ResultSet res = this.insert("client_id, flight_id, passanger_id, amount", client_id, flight_id, passanger_id, amount).buildReturn().execute();
+            ResultSet res = this.insert("client_id, flight_id, amount", client_id, flight_id, amount).buildReturn().execute();
 //
 //                Reservation reservationG = new Reservation();
 //                reservationG = DBHandler.<Reservation>getParams(res, Reservation::typesToMap, Reservation.class);
-
-                Reservation reservation = new Reservation(
-                        res.getInt("id"),
-                        res.getInt("client_id"),
-                        res.getInt("passanger_id"),
-                        res.getInt("flight_id"),
-                        res.getTimestamp("created_at"),
-                        res.getFloat("amount")
-                );
-
-            return reservation;
+                if(res.next()){
+                    Reservation reservation = new Reservation(
+                            res.getInt("id"),
+                            res.getInt("client_id"),
+                            res.getInt("flight_id"),
+                            res.getTimestamp("created_at"),
+                            res.getFloat("amount")
+                    );
+                    return reservation;
+                }
         }catch (SQLException e){
 //        }catch (SQLException | NoSuchMethodException | InstantiationException | InvocationTargetException | IllegalAccessException e){
             e.printStackTrace();

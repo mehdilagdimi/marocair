@@ -38,7 +38,7 @@ public class ReservationServlet extends HttpServlet {
         userSession_id = Auth.auth(request.getSession()).getId();
         reservations =  reservationController.getClientReservations(userSession_id);
         request.setAttribute("reservations", reservations);
-        request.getRequestDispatcher("client/reservations.jsp").forward(request,response);
+        request.getRequestDispatcher("/client/reservations.jsp").forward(request,response);
     }
 
     @Override
@@ -46,16 +46,18 @@ public class ReservationServlet extends HttpServlet {
         userSession_id = Auth.auth(request.getSession()).getId();
 //        super.doPost(req, resp);
 
-        if (request.getParameter("flight-id") != null) {
-    //        reservation = reservationController.addReservation(FlightServlet.flights, Integer.valueOf(request.getParameter("flight_id")) , userSession_id, Integer.valueOf(request.getParameter("passenger_id")) );
-            reservation = reservationController.addReservation(FlightServlet.searchedFlights, Integer.valueOf(request.getParameter("flight-id")) , userSession_id, 1);
-            //check if list of reservation is empty if yes then get all client reservation through doGet method above
+        //check if list of reservation is empty if yes then get all client reservation through doGet method above
+        if (request.getParameter("flight-id") != null && FlightServlet.searchedFlights != null ) {
+//            String fullname = request.getParameter("fullname");
+            String fullname = "mehdilagdimi";
+            reservation = reservationController.addReservation(FlightServlet.searchedFlights,fullname, Integer.valueOf(request.getParameter("flight-id")) , userSession_id);
+
             if(reservations == null) {
                 this.doGet(request, response);
             } else {
                 reservations.add(reservation);
                 request.setAttribute("reservations", reservations);
-                request.getRequestDispatcher(getInitParameter("url") +  "client/reservations.jsp").forward(request,response);
+                request.getRequestDispatcher("/client/reservations.jsp").forward(request,response);
             }
         }
     }

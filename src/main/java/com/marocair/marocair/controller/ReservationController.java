@@ -1,7 +1,9 @@
 package com.marocair.marocair.controller;
 
+import com.marocair.marocair.dao.PassengerDao;
 import com.marocair.marocair.dao.ReservationDao;
 import com.marocair.marocair.model.Flight;
+import com.marocair.marocair.model.Passenger;
 import com.marocair.marocair.model.Reservation;
 
 import java.util.List;
@@ -17,7 +19,7 @@ public class ReservationController {
         return reservationDao.getReservationsByClientId(id);
     }
 
-    public Reservation addReservation(List<Flight> searchedFlights, int flight_id, int client_id, int passanger_id){
+    public Reservation addReservation(List<Flight> searchedFlights, String fullname, int flight_id, int client_id){
         //get model of selected flight and get its price to calculate appropriate reservation amount
         Flight selectedFlight = searchedFlights.stream()
                 .filter(flight -> flight.getId() == flight_id)
@@ -26,7 +28,14 @@ public class ReservationController {
 
         float amount = getReservationAmount(selectedFlight.getPrice());
 
-        return reservationDao.storeReservation(flight_id, client_id, passanger_id, amount);
+        //store reservation
+        Reservation reservation = reservationDao.storeReservation(flight_id, client_id, amount);
+
+        //insert new passenger
+        PassengerDao passengerDao = new PassengerDao();
+        passengerDao.storePassenger(fullname, reservation.getId());
+
+        return reservation;
     }
 
     public float getReservationAmount(float flightPrice){
