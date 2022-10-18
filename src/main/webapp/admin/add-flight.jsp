@@ -4,7 +4,10 @@
     <jsp:param name="sectionTitle" value="Add flights" />
 </jsp:include>
 
-<form action="${url}flight" method="post" class="bg-gray-50 rounded-md p-6">
+<%
+    String url = application.getInitParameter("url");
+%>
+<form action="<%=url%>flight" method="post" class="bg-gray-50 rounded-md p-6">
     <div class="flex-col">
         <div class="grid grid-cols-3 gap-4">
             <input class="border border-1 p-3 rounded-md" type="text" name="from" placeholder="From" >

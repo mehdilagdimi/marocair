@@ -6,9 +6,9 @@ public class Config {
 
         //public static Dotenv dotenv = Dotenv.load();
         private final static String URL = "jdbc:postgresql://localhost:5432/youflight"; //dotenv.get("URL") ;
-        private final static String USER = "postgres";//dotenv.get("USER");
+        private final static String USER = "mehdilagdimi";//dotenv.get("USER");
         //setup env variable for later use
-        private final static String PASSWORD = "nopass";//dotenv.get("PASSW");
+        private final static String PASSWORD = "1234";//dotenv.get("PASSW");
 
 
         public static String getUrl() {
